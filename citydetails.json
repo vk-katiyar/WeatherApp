@@ -1,0 +1,18 @@
+[
+  {
+    "CityID": 1,
+    "CityName": "Delhi",
+    "Latitude": 28.6600,
+    "Longitude": 77.2300,
+    "State": "Delhi",
+    "Country": "India"
+  },
+  {
+    "CityID": 2,
+    "CityName": "Mumbai",
+    "Latitude": 18.9667,
+    "Longitude": 72.8333,
+    "State": "Maharashtra",
+    "Country": "India"
+  }
+]
