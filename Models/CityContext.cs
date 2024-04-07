@@ -11,6 +11,6 @@ namespace WeatherApp.Models
             : base(options)
         {
         }
-        public virtual DbSet<City> ToDo { get; set; } = null!;
+        public virtual DbSet<City> City { get; set; } = null!;
     }
 }

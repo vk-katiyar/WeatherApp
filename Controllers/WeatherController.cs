@@ -16,37 +16,119 @@ namespace WeatherApp.Controllers
 
         [HttpGet]
         [Route("GetWeatherByCity")]
-        public async Task<ActionResult<WeatherResult>> GetWeatherByCity([FromQuery]string city)
+        public async Task<ActionResult<WeatherResult>> GetWeatherByCity([FromQuery] string city)
         {
-            
+            try
+            {
+                if (city != null)
+                {
+                    var cityDetails = await _weatherService.GetWeatherResult(city);
+                    if (cityDetails != null)
+                    {
+                        return Ok(cityDetails);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpGet]
         [Route("GetMinimumWeather")]
         public async Task<ActionResult<List<WeatherResult>>> GetMinimumWeather()
         {
-
+            try
+            {
+                var cityDetails = await _weatherService.GetMinimumWeather();
+                if (cityDetails != null)
+                {
+                    return Ok(cityDetails);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpPut]
         [Route("UpdateCityDetails")]
-        public async Task<IActionResult> UpdateCityDetails([FromBody]City city)
+        public async Task<IActionResult> UpdateCityDetails([FromBody] City city)
         {
-
+            try
+            {
+                var IsUpdated = await _weatherService.UpdateCity(city);
+                if (IsUpdated)
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpPost]
         [Route("AddCity")]
-        public async Task<IActionResult> AddCity([FromBody]City city)
+        public async Task<IActionResult> AddCity([FromBody] City city)
         {
-
+            try
+            {
+                var IsAdded = await _weatherService.AddCity(city);
+                if (IsAdded)
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpDelete("{CityID:int}")]
         [Route("DeleteCity")]
         public async Task<IActionResult> DeleteCity(int CityID)
         {
-
+            try
+            {
+                var IsDeleted = await _weatherService.DeleteCity(CityID);
+                if (IsDeleted)
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

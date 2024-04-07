@@ -6,8 +6,8 @@ namespace WeatherApp.Interfaces
     {
         public Task<WeatherResult> GetWeatherResult(string city);
         public Task<List<WeatherResult>> GetMinimumWeather();
-        public Task UpdateCity(City city);
-        public Task AddCity(City city);
-        public Task DeleteCity(int CityID);
+        public Task<bool> UpdateCity(City city);
+        public Task<bool> AddCity(City city);
+        public Task<bool> DeleteCity(int CityID);
     }
 }
