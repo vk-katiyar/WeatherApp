@@ -71,14 +71,21 @@ namespace WeatherApp.Controllers
         {
             try
             {
-                var IsUpdated = await _weatherService.UpdateCity(city);
-                if (IsUpdated)
+                if (city != null)
                 {
-                    return NoContent();
+                    var IsUpdated = await _weatherService.UpdateCity(city);
+                    if (IsUpdated)
+                    {
+                        return NoContent();
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
                 else
                 {
-                    return NotFound();
+                    return BadRequest();
                 }
             }
             catch (Exception)
@@ -93,15 +100,19 @@ namespace WeatherApp.Controllers
         {
             try
             {
-                var IsAdded = await _weatherService.AddCity(city);
-                if (IsAdded)
+                if (city != null)
                 {
-                    return NoContent();
+                    var IsAdded = await _weatherService.AddCity(city);
+                    if (IsAdded)
+                    {
+                        return NoContent();
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
-                else
-                {
-                    return NotFound();
-                }
+                else { return BadRequest(); }
             }
             catch (Exception)
             {
